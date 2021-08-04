@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Review
+{% endblock %}
+
+
+{% block body %}
+
+     <script src="https://use.fontawesome.com/a6f0361695.js"></script>
+
+<h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
+
+<form id="feedback" action="/feedback" method="post">
+  <div class="pinfo">Your personal info</div>
+
+<div class="form-group">
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+  <input name="username" autocomplete="off" placeholder="Username" class="form-control" type="text">
+    </div>
+  </div>
+</div>
+
+
+ <div class="pinfo">Write your feedback.</div>
+
+
+<div class="form-group">
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+  <textarea class="form-control" placeholder="Type your review" name="text" id="review" rows="3"></textarea>
+
+    </div>
+  </div>
+</div>
+
+ <button type="submit" name="book_id" value="{{book[0]['id']}}" class="btn btn-primary">Submit</button>
+
+
+</form>
+
+{% endblock %}

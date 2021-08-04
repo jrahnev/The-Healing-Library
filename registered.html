@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Registered
+{% endblock %}
+
+{% block body %}
+
+    <h3>Now you can test your current mood</h3>
+
+    <form action='/registered' method="post">
+    <button name="quizz" type="text">Take a SURVEY</button>
+    </form>
+
+    <h3>{{final}}</h3>
+
+    <script>
+        document.getElementById('login').remove();
+        document.getElementById('register').remove();
+    </script>
+
+{% endblock %}

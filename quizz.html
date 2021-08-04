@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block body %}
+
+    <div style="text-align:left; margin-left:35%; margin-top: 3%;">
+    <form style="text-align:left;" action='/quizz' method="post">
+        <h3>{{question}}</h3>
+        <input type="radio" name="question" value="{{answer_1}}" checked>
+        <label>{{answer_1}}</label><br>
+        <input type="radio" name="question" value="{{answer_2}}">
+        <label>{{answer_2}}</label><br>
+        <input type="radio" name="question" value="{{answer_3}}">
+        <label>{{answer_3}}</label><br><br>
+        <button style="margin-left: 17%;" type="sumbit">SUBMIT</button>
+    </form>
+    </div>
+
+    <script>
+        document.getElementById('login').remove();
+        document.getElementById('register').remove();
+        document.getElementById('heading').innerHTML = "The Healing Library Survey"
+        document.getElementById('heading').style.color = 'DarkMagenta';
+
+    </script>
+
+
+{% endblock %}

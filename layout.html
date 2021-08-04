@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="/static/styles.css" rel="stylesheet">
+
+ <title> {% block title %} {% endblock %} </title>
+</head>
+<body>
+
+<div class="navbar">
+
+  <a><form action ="/search" method="get" onsubmit="return validate_form();"><input name="q" type="text" placeholder="Search..">
+  <button>Search</button></a></form>
+  <a style="float:left;" id='home'  href="/">Home</a>
+  <a style="float:left;" id='login' href="/login">Log in</a>
+  <a id="logout" href="/logout">Log out</a>
+  <a style="float:left;" id = 'register' href="/register">Sign Up</a>
+  <a id = 'my' href="/mybooks">My Books</a>
+  <a id = 'quizz' href='/quizz'>Survey</a>
+  <a id = "list" href = '/account'>List</a>
+
+</div>
+
+<div class="main">
+  <h1 id='heading' style="text-shadow: 1px 2px;">The Healing Lybrary</h1>
+  {% block body %} {% endblock %}
+  <footer style="color:orange; font-size: small; text-align: center;padding-top: 80px;">
+            Copyright &#169; Yuriy Rahnev
+  </footer>
+
+</div>
+
+</body>
+</html>

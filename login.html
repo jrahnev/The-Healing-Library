@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log in
+
+{% endblock %}
+
+
+{% block body %}
+    {% if alert %}
+    <script>
+        alert("You are already logged in!")
+        window.location.replace("/")
+    </script>
+    {% endif %}
+
+    <form action = '/login', method = 'post'>
+
+        <input type="text" name='username' autofocus autocomplete="off" placeholder="Username"><br><br>
+        <input type="password" name='password' placeholder="Password"><br><br>
+        <button type="submit">Log in</button>
+
+    </form>
+<h4 style="color:red">{{title}}</h4>
+
+{% endblock %}

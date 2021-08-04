@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block body %}
+
+<div style="padding-top:30px;color:green; font-size: large; font-family: 'Times New Roman', serif;">
+<h3>Take a quick survey and borrow the best books</h3>
+<p>for</p>
+<h3>your current mood</h3>
+<h3 style="color:black;">If you want to take a survey or take a look at your account,</h3>
+<h3 style="color:black;">please <a href="/login">Log in</a> or <a href="/register">register</a></h3>
+</div>
+
+{% if hide %}
+    <script>
+        document.getElementById('login').remove();
+        document.getElementById('register').remove();
+    </script>
+{% endif %}
+
+{% endblock %}

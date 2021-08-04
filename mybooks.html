@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Books
+{% endblock %}
+
+
+
+{% block body %}
+
+<style>
+    #customers {
+        width: 80%;
+    }
+</style>
+
+    <script>
+        document.getElementById('login').remove();
+        document.getElementById('register').remove();
+        document.addEventListener("DOMContentLoaded", function(){
+            let expired = document.querySelectorAll("#return")
+            for (let i = 0; i < expired.length; i++){
+                if (expired[i].innerHTML == 'EXPIRED') {
+                    expired[i].style.backgroundColor = "pink";
+                    expired[i].style.color = "white";
+                }
+            }
+        })
+
+    </script>
+
+    <h2 style="color:SlateBlue;">Dear {{name}},</h2>
+    <h2 id="greet" style="color:SlateBlue;">your books: </h2>
+
+    {% if mybooks %}
+
+        <table id = "customers" style="text-align: left; margin-top: 5%;">
+            <tr>
+        <th>Review</th>
+        <th style="width:600px;">Title</th>
+        <th style="width:500px;">Author</th>
+        <th>Action</th>
+        <th>Expiry date</th>
+            </tr>
+
+            {% for book in mybooks %}
+            <tr>
+            <td><form action='/feedback' method = 'post'><button name='name' value="{{book.id}}" class="buton" type="submit">Write</button></form></td>
+            <td>{{book.Title}}</td>
+            <td>{{book.Author}}</td>
+            <td><form action='/returning' method='post'><button style="color:white; background-color:orange; height:35px; width:100px;border-radius:10px;" class="button" value="{{book.id}}" name='id' type="submit">Return</button></form></td>
+            <td id = "return">{{book.return}}</td>
+            {% endfor %}
+        </table>
+    {% else %}
+        <script>
+            document.getElementById("greet").innerHTML = "you haven't got any books."
+        </script>
+    {% endif %}
+
+{% endblock %}

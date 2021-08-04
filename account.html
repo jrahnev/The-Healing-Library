@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block body %}
+
+    <h1 id ="sub">The Books We Recommend</h1>
+    <h3 id="like" style="color:blue;">If you don't like them take a new survey</h3>
+
+    {% if emptylist == 0 %}
+
+        <h2 id="empty" style="color:orange;">The list is empty</h2>
+        <form action='/account' method="post">
+        <button name="quizz" value="quizz" type="text">Take a SURVEY</button>
+        </form>
+
+    {% endif %}
+
+    <form id='form' name="Form" style="text-align:left;" action='/account' method='post'>
+    <button style="color:purple; width:150px;" id='button' type="submit">BORROW</button>
+        <br><br>
+    <table id = "customers">
+    <tr>
+        <th style="width:400px;">Title</th>
+        <th>Review</th>
+        <th>Author</th>
+        <th>Availability</th>
+        <th>Expiry date</th>
+      </tr>
+    {% for book in books %}
+    <tr>
+        {% if book.status == "NOT AVAILABLE" and book.id_user == id_user %}
+            <td>&#9632;<label>&nbsp; {{book.Title}}</td>
+            <td><button name="review" value="{{book.id}}" type="submit" onclick="return changeAction();">Review</button></form></td>
+            <td>{{book.Author}}</td>
+            <td><b style="color:purple"><i>Already borrowed by you</i></label><br></td>
+            {% if book.return %}
+            <td>{{book.return}}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        {% elif book.status == "NOT AVAILABLE" %}
+           <td>&#9632;<label>&nbsp; {{book.Title}}</td>
+           <td><button name="review" value="{{book.id}}" type="submit" onclick="return changeAction()";>Review</button></form></td>
+           <td>{{book.Author}}</td>
+           <td><b style="color:red">{{book.status}}</b></label><br></td>
+           {% if book.return %}
+            <td id="return">{{book.return}}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        {% else %}
+            <td ><input type="checkbox" value="{{book.id}}" name="books">
+            <label>{{book.Title}}</label><br></td>
+            <td><button name="review" value="{{book.id}}" type="submit" onclick="return changeAction()";>Review</button></form></td>
+            <td>{{book.Author}}</td>
+            <td style="color:green">TAKE ME, BABY</td>
+            {% if book.return %}
+            <td>{{book.return}}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        {% endif %}
+    </tr>
+    {% endfor %}
+
+    </table>
+
+    </form>
+
+    <script>
+            {% if new_page == True %}
+            document.getElementById("like").remove();
+            {% if q == False %}
+            document.getElementById("button").remove();
+            {% endif %}
+            document.getElementById("sub").innerHTML = "Search results:"
+            {% endif %}
+        document.getElementById('login').remove();
+        document.getElementById('register').remove();
+        let emptylist = document.getElementById('empty');
+        if (emptylist)
+            {
+                document.getElementById('button').remove();
+                document.getElementById('like').remove();
+                document.getElementById('customers').remove();
+            }
+        document.addEventListener("DOMContentLoaded", function()
+        {
+            message = document.querySelectorAll('#return');
+            for (let i = 0; i < message.length; i++){
+                if (message[i].innerHTML == "EXPIRED")
+                {
+                    message[i].innerHTML = "TO BE RETURNED SOON";
+                    message[i].style.color = "red";
+                }
+            }
+        });
+
+        function changeAction(){
+            document.Form.action="/review";
+            document.Form.method="get";
+
+        }
+
+
+
+    </script>
+
+
+
+{% endblock %}

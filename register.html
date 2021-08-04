@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+
+    {% if alert %}
+    <script>
+        alert("You are already registered!")
+        window.location.replace("/")
+    </script>
+    {% endif %}
+    <form action="/register", method="post" autocomplete="off">
+        <input type="text" name="username"  autofocus placeholder="Username"><br><br>
+        <input type="password" name="password" placeholder="Password"><br><br>
+        <input type="password" name="confirmation" placeholder="Repeat password"><br><br>
+        <button type="submit">Sign up</button>
+    </form>
+<h4 style="color:red">{{title}}</h4>
+
+{% endblock %}
